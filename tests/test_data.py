@@ -78,6 +78,10 @@ def test_tokens_in_vocab_range(sample_text):
 def test_load_corpus_reads_shakespeare():
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_dir = os.path.join(here, "data")
+    # The corpus is fetched by download_data.py, not committed (see .gitignore),
+    # so skip cleanly if it isn't present in this environment.
+    if not os.path.exists(os.path.join(data_dir, "shakespeare.txt")):
+        pytest.skip("corpus not downloaded (run: python download_data.py)")
     text = load_corpus(data_dir)
     assert isinstance(text, str)
     assert len(text) > 0
