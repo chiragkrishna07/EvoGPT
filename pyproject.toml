@@ -1,0 +1,85 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "evogpt"
+version = "0.1.0"
+description = "A from-scratch GPT transformer with an autonomous evolutionary architecture-search loop."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Chirag K", email = "chiragkrishna1732@gmail.com" },
+]
+keywords = ["gpt", "transformer", "evolutionary", "neural-architecture-search", "pytorch"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.2",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/chiragkrishna07/evogpt"
+Repository = "https://github.com/chiragkrishna07/evogpt"
+
+[tool.hatch.build.targets.wheel]
+packages = ["evogpt", "experiments"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/evogpt",
+    "/experiments",
+    "/tests",
+    "/run_search.py",
+    "/sample.py",
+    "/analyze.py",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [
+    "runs",
+    "results",
+    "data",
+    "__pycache__",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+# A sensible baseline: pycodestyle errors/warnings and pyflakes.
+select = ["E", "F", "W"]
+# These rules are intentionally relaxed so the existing source style is
+# accepted as-is (no source edits required to pass `ruff check .`).
+ignore = [
+    "E501",  # line-too-long (long lines kept for readability)
+    "E702",  # multiple-statements-on-one-line (semicolons used in source)
+    "E741",  # ambiguous-variable-name (e.g. single-letter math names like l)
+    "F401",  # unused-import (re-exports / convenience imports)
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

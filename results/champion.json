@@ -1,0 +1,16 @@
+{
+  "genome": {
+    "n_layer": 3,
+    "d_model": 192,
+    "n_head": 8,
+    "kv_ratio": 4,
+    "mlp_ratio": 2.0,
+    "block_size": 128,
+    "dropout": 0.1
+  },
+  "final_val_loss": 1.5176763534545898,
+  "final_val_ppl": 4.5616132937913525,
+  "final_bpc": 2.1895441488033827,
+  "n_params": 953856,
+  "sample": "\n\nPOLIXENES:\nWhy, sir.\n\nBISHOP OF YORK:\nI bear the married that of a brother he be abhor,\nI'll have no worse of that blood blood,"
+}
